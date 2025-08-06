@@ -6,7 +6,7 @@
     <title>Newsletter Subscription form</title>
 </head>
 <body>
-    <form id="subscribeForm" action="https://newsletter-backend-folder.onrender.com/subscribe">
+    <form id="subscribeForm">
         <div>
              <label>Email:</label>
              <input type="email" id="email" required>
@@ -29,7 +29,7 @@ document.getElementById('subscribeForm').addEventListener('submit', async (e) =>
     const phone = document.getElementById('phone').value;
 
     try {
-        const response = await fetch(' https://neeewsletter-backend.onrender.com/subscribe', {
+        const response = await fetch('https://neeewsletter-backend.onrender.com/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, phone })
