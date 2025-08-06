@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter Subscription form</title>
+</head>
+<body>
+    <form id="subscribeForm" action="https://newsletter-backend-folder.onrender.com/subscribe">
+        <div>
+             <label>Email:</label>
+             <input type="email" id="email" required>
+        </div>
+        <div>
+          <label>Phone:</label>
+          <input type="tel" id="phone" required>
+        </div>
+        <div>
+            <button type="submit">Subscribe</button>
+        </div> 
+         
+    </form>
+<p id="message"></p>
+
+<script>
+document.getElementById('subscribeForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+
+    try {
+        const response = await fetch(' https://neeewsletter-backend.onrender.com/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, phone })
+        });
+
+        const result = await response.json();
+        document.getElementById('message').textContent = result.message || 'Subscribed successfully!';
+    } catch (err) {
+        document.getElementById('message').textContent = 'Error subscribing. Please try again.';
+    }
+});
+</script>
+</body>
+</html>
